@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HRI Quiz | Robot-Supported Learning</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- IMPORTANT: New JavaScript filename -->
+    <script src="{{ url_for('static', filename='script_v2.js') }}"
+            defer></script>
+</head>
+
+
+<body>
+
+<main class="page-container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="badge">
+            HUMAN-ROBOT INTERACTION
+        </div>
+
+        <h1>
+            Robot-Supported Learning Quiz
+        </h1>
+
+        <p class="subtitle">
+            Technology Acceptance in University
+            Robot-Supported Quiz-Based Learning
+        </p>
+
+        <p class="description">
+            Answer the questions and experience different
+            robot feedback conditions using verbal-only and
+            multimodal feedback.
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         QUIZ CONTAINER
+    ====================================================== -->
+
+    <section id="quiz-container"
+             class="quiz-card">
+
+
+        <!-- =================================================
+             ROBOT STATUS
+        ================================================== -->
+
+        <div class="robot-section">
+
+            <div id="robot-eye"
+                 class="robot-eye">
+            </div>
+
+            <div class="robot-info">
+
+                <div id="robot-status"
+                     class="robot-status">
+                    Waiting for your answer...
+                </div>
+
+                <div class="robot-details">
+
+                    <span id="emotion-display">
+                        Emotion: --
+                    </span>
+
+                    <span id="gesture-display">
+                        Gesture: --
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
+
+        <div class="progress-section">
+
+            <div class="progress-header">
+
+                <span id="question-number">
+                    Question 1 of 5
+                </span>
+
+                <span>
+                    Score:
+                    <strong id="score-value">
+                        0
+                    </strong>
+                </span>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div id="progress-bar"
+                     class="progress-bar">
+                </div>
+
+            </div>
+
+
+            <div id="progress-text">
+                1 / 5
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             QUESTION
+        ================================================== -->
+
+        <div class="question-card">
+
+            <div class="question-label">
+                QUESTION
+            </div>
+
+            <h2 id="question-text">
+                Loading question...
+            </h2>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AUTOMATIC FEEDBACK MODE
+        ================================================== -->
+
+        <div class="mode-section">
+
+            <div class="mode-label">
+                CURRENT FEEDBACK MODE
+            </div>
+
+            <div id="current-mode"
+                 class="mode-display">
+                Loading mode...
+            </div>
+
+            <p class="mode-description">
+                The feedback mode is automatically assigned
+                by the system for this question.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SOUND INPUT
+        ================================================== -->
+
+        <div class="sound-section">
+
+            <div class="mode-label">
+                SOUND INPUT
+            </div>
+
+            <p class="sound-description">
+                Record your spoken answer so the system can
+                analyze your voice input.
+            </p>
+
+            <button id="record-btn"
+                    class="record-btn"
+                    type="button">
+
+                🎤 Start Recording
+
+            </button>
+
+            <div id="recording-status"
+                 class="recording-status">
+
+                Microphone ready
+
+            </div>
+
+            <audio id="audio-preview"
+                   class="audio-preview"
+                   controls
+                   hidden>
+            </audio>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ANSWER
+        ================================================== -->
+
+        <div class="answer-section">
+
+            <label for="answer-input">
+                Your Answer
+            </label>
+
+            <input
+                type="text"
+                id="answer-input"
+                placeholder="Type your answer here..."
+                autocomplete="off"
+            >
+
+            <button
+                id="submit-btn"
+                class="primary-btn"
+                type="button"
+            >
+                Submit Answer
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FEEDBACK
+        ================================================== -->
+
+        <div id="feedback-box"
+             class="feedback-box hidden">
+
+            <div class="feedback-title">
+                Robot Feedback
+            </div>
+
+            <div id="feedback-text"
+                 class="feedback-text">
+            </div>
+
+            <div id="correct-answer"
+                 class="correct-answer">
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CURRENT MODE RESULT
+        ================================================== -->
+
+        <div class="mode-results">
+
+            <div class="section-title">
+                Feedback Mode Results
+            </div>
+
+
+            <div class="mode-result-grid">
+
+
+                <!-- VERBAL -->
+
+                <div class="mode-result-card">
+
+                    <h3>
+                        Verbal Only
+                    </h3>
+
+                    <p>
+                        <span id="verbal-correct">0</span>
+                        /
+                        <span id="verbal-total">0</span>
+                    </p>
+
+                </div>
+
+
+                <!-- MULTIMODAL -->
+
+                <div class="mode-result-card">
+
+                    <h3>
+                        Multimodal
+                    </h3>
+
+                    <p>
+                        <span id="multimodal-correct">0</span>
+                        /
+                        <span id="multimodal-total">0</span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- JavaScript uses this element -->
+
+            <div id="mode-result"
+                 class="mode-result">
+                Feedback Mode: Waiting
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL RESULTS
+    ====================================================== -->
+
+    <!-- IMPORTANT:
+         JavaScript expects result-container
+    -->
+
+    <section id="result-container"
+             class="result-container hidden">
+
+
+        <div class="result-card">
+
+
+            <!-- CHECK ICON -->
+
+            <div class="final-icon">
+                ✓
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h2>
+                Quiz Complete!
+            </h2>
+
+
+            <p class="final-message">
+                Great effort! Here is your performance summary.
+            </p>
+
+
+
+            <!-- =================================================
+                 OVERALL SCORE
+            ================================================== -->
+
+            <div class="score-summary">
+
+
+                <div class="score-item">
+
+                    <span class="score-label">
+                        Score
+                    </span>
+
+                    <strong id="final-score">
+                        0/5
+                    </strong>
+
+                </div>
+
+
+                <div class="score-item">
+
+                    <span class="score-label">
+                        Percentage
+                    </span>
+
+                    <strong id="final-percentage">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FEEDBACK MODE COMPARISON
+            ================================================== -->
+
+            <div class="comparison-section">
+
+                <h3>
+                    Feedback Mode Comparison
+                </h3>
+
+
+                <div class="comparison-grid">
+
+
+                    <!-- VERBAL ONLY -->
+
+                    <div class="comparison-card">
+
+                        <span>
+                            Verbal Only
+                        </span>
+
+                        <strong>
+
+                            <span id="final-verbal-correct">
+                                0
+                            </span>
+
+                            /
+
+                            <span id="final-verbal-total">
+                                0
+                            </span>
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- MULTIMODAL -->
+
+                    <div class="comparison-card">
+
+                        <span>
+                            Multimodal
+                        </span>
+
+                        <strong>
+
+                            <span id="final-multimodal-correct">
+                                0
+                            </span>
+
+                            /
+
+                            <span id="final-multimodal-total">
+                                0
+                            </span>
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESTART
+            ================================================== -->
+
+            <button
+                id="restart-btn"
+                class="primary-btn restart-btn"
+                type="button"
+            >
+                Restart Quiz
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            HRI Quiz Prototype • Robot-Supported Learning
+        </p>
+
+        <p>
+            Sound input is enabled for prototype evaluation.
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+</body>
+
+</html>

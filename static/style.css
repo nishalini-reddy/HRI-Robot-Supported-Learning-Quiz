@@ -1,0 +1,636 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: #e5eef8;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+button,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
+
+.page-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.main-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid #38bdf8;
+    border-radius: 30px;
+    color: #38bdf8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+}
+
+.main-header h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: #f8fafc;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #93c5fd;
+    margin-bottom: 12px;
+}
+
+.description {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ROBOT PANEL
+========================================================= */
+
+.robot-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: #0d1b2d;
+    border: 1px solid #1e3a56;
+    border-radius: 18px;
+}
+
+.robot-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    background: #07111f;
+    border: 1px solid #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.robot-eye {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 18px #38bdf8;
+    transition: 0.3s ease;
+}
+
+.robot-eye.active {
+    transform: scale(1.3);
+    box-shadow: 0 0 28px #38bdf8;
+}
+
+.robot-info {
+    flex: 1;
+}
+
+.robot-status-label {
+    font-size: 11px;
+    color: #64748b;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+}
+
+.robot-status {
+    color: #f8fafc;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.robot-feedback {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 190px;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.feedback-label {
+    color: #64748b;
+    margin-right: 5px;
+}
+
+
+/* =========================================================
+   QUIZ CONTAINER
+========================================================= */
+
+.quiz-container {
+    display: block;
+}
+
+.quiz-container.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-section {
+    margin-bottom: 22px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.progress-info strong {
+    color: #38bdf8;
+    font-size: 18px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: #16263a;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #38bdf8;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.progress-text {
+    text-align: right;
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.question-card,
+.mode-section,
+.sound-section,
+.answer-section,
+.feedback-box,
+.mode-results {
+    background: #0d1b2d;
+    border: 1px solid #1e3a56;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   SECTION LABEL
+========================================================= */
+
+.section-label {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-text {
+    color: #f8fafc;
+    font-size: 26px;
+    line-height: 1.45;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   FEEDBACK MODE
+========================================================= */
+
+.mode-display {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: #102d46;
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.mode-description {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SOUND INPUT
+========================================================= */
+
+.sound-description {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.record-btn {
+    border: 1px solid #38bdf8;
+    background: #102d46;
+    color: #e0f2fe;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.record-btn:hover {
+    background: #163d5b;
+}
+
+.record-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.recording-status {
+    margin-top: 12px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.audio-preview {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+.answer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.answer-input {
+    width: 100%;
+    resize: vertical;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #29435d;
+    border-radius: 12px;
+    background: #07111f;
+    color: #f8fafc;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.answer-input::placeholder {
+    color: #64748b;
+}
+
+.answer-input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #38bdf8;
+    color: #06111d;
+    font-size: 15px;
+    font-weight: 800;
+    transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #7dd3fc;
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+.feedback-box {
+    border-color: #334155;
+}
+
+.feedback-box.hidden {
+    display: none !important;
+}
+
+.feedback-text {
+    color: #f8fafc;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.mode-result {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MODE RESULTS
+========================================================= */
+
+.mode-result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.mode-result-card {
+    padding: 20px;
+    background: #07111f;
+    border: 1px solid #20364d;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.mode-result-card h3 {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.mode-score {
+    color: #38bdf8;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FINAL RESULTS
+========================================================= */
+
+.result-container {
+    display: block;
+    width: 100%;
+}
+
+.result-container.hidden {
+    display: none !important;
+}
+
+.result-card {
+    width: 100%;
+    max-width: 760px;
+    margin: 30px auto;
+    padding: 40px;
+    text-align: center;
+    background: #0d1b2d;
+    border: 1px solid #38bdf8;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.result-badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid #22c55e;
+    color: #4ade80;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+}
+
+.result-title {
+    color: #f8fafc;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.result-subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.final-score-section {
+    padding: 25px;
+    background: #07111f;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.final-score-label {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.final-score {
+    color: #38bdf8;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.final-percentage {
+    color: #4ade80;
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.final-mode-section {
+    margin-bottom: 30px;
+}
+
+.final-mode-section .section-label {
+    text-align: left;
+}
+
+.restart-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #38bdf8;
+    border-radius: 12px;
+    background: #102d46;
+    color: #e0f2fe;
+    font-size: 15px;
+    font-weight: 800;
+    transition: 0.2s ease;
+}
+
+.restart-btn:hover {
+    background: #163d5b;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.main-footer {
+    text-align: center;
+    padding: 30px 0 10px;
+    color: #475569;
+    font-size: 12px;
+}
+
+.main-footer p {
+    margin: 4px 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .page-container {
+        padding: 25px 15px;
+    }
+
+    .main-header h1 {
+        font-size: 31px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .robot-panel {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .robot-feedback {
+        min-width: 0;
+        width: 100%;
+        align-items: center;
+    }
+
+    .question-text {
+        font-size: 21px;
+    }
+
+    .mode-result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-card {
+        padding: 25px 18px;
+    }
+
+    .result-title {
+        font-size: 28px;
+    }
+
+    .final-score {
+        font-size: 44px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .main-header h1 {
+        font-size: 27px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .question-card,
+    .mode-section,
+    .sound-section,
+    .answer-section,
+    .feedback-box,
+    .mode-results {
+        padding: 18px;
+    }
+
+    .question-text {
+        font-size: 19px;
+    }
+
+    .final-score {
+        font-size: 40px;
+    }
+}
